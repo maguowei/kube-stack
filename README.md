@@ -1,7 +1,6 @@
-# apm
-Elastic APM
+# Elastic APM
 
-## use docker-compose
+## compose
 
 ```bash
 make up
