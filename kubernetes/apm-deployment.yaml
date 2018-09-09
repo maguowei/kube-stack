@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: apm
+  labels:
+    app: apm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apm
+  template:
+    metadata:
+      labels:
+        app: apm
+    spec:
+      containers:
+      - args:
+        - -e
+        - -E
+        - output.elasticsearch.hosts=http://elasticsearch:9200
+        image: docker.elastic.co/apm/apm-server:6.4.0
+        imagePullPolicy: IfNotPresent
+        name: apm
+        resources: {}
+      restartPolicy: Always
