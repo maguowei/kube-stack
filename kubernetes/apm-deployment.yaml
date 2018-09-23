@@ -19,7 +19,7 @@ spec:
         - -e
         - -E
         - output.elasticsearch.hosts=http://elasticsearch:9200
-        image: docker.elastic.co/apm/apm-server:6.4.0
+        image: docker.elastic.co/apm/apm-server:6.4.1
         imagePullPolicy: IfNotPresent
         name: apm
         resources: {}

@@ -1,14 +1,18 @@
 version: '3.5'
 services:
   apm:
-    image: docker.elastic.co/apm/apm-server:6.4.0
+    image: docker.elastic.co/apm/apm-server:${ELK_VERSION}
     restart: always
     ports:
       - "8200:8200"
+    depends_on:
+      - elasticsearch
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELK_VERSION}
     environment:
       - "discovery.type=single-node"
+      - "discovery.zen.minimum_master_nodes=1"
+      - "ES_JAVA_OPTS=-Xmx256m -Xms256m"
     restart: always
     ports:
       - "9200:9200"
@@ -16,10 +20,13 @@ services:
     volumes:
       - ./data/volume/elasticsearch:/usr/share/elasticsearch/data
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.4.0
+    image: docker.elastic.co/kibana/kibana:${ELK_VERSION}
     environment:
       - "ELASTICSEARCH_URL=http://elasticsearch:9200"
     restart: always
     ports:
       - "5601:5601"
+    depends_on:
+      - elasticsearch
+      - apm
   
