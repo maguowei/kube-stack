@@ -1,4 +1,4 @@
-# Elastic APM
+# Elastic Stack
 
 ## compose
 

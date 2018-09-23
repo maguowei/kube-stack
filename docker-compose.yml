@@ -19,6 +19,17 @@ services:
       - "9300:9300"
     volumes:
       - ./data/volume/elasticsearch:/usr/share/elasticsearch/data
+  logstash:
+    image: docker.elastic.co/logstash/logstash:${ELK_VERSION}
+    restart: always
+    environment:
+      - "ES_JAVA_OPTS=-Xmx256m -Xms256m"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - elasticsearch
+    volumes:
+      - ./pipeline:/usr/share/logstash/pipeline
   kibana:
     image: docker.elastic.co/kibana/kibana:${ELK_VERSION}
     environment:
@@ -28,5 +39,4 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
-      - apm
   
