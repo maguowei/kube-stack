@@ -15,11 +15,11 @@ spec:
         app: kibana
     spec:
       containers:
-      - env:
-        - name: ELASTICSEARCH_URL
-          value: http://elasticsearch:9200
+      - name: kibana
         image: docker.elastic.co/kibana/kibana:6.4.1
         imagePullPolicy: IfNotPresent
-        name: kibana
+        env:
+        - name: ELASTICSEARCH_URL
+          value: http://elasticsearch:9200
         resources: {}
       restartPolicy: Always

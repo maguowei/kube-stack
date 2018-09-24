@@ -15,12 +15,12 @@ spec:
         app: apm
     spec:
       containers:
-      - args:
+      - name: apm
+        image: docker.elastic.co/apm/apm-server:6.4.1
+        imagePullPolicy: IfNotPresent
+        args:
         - -e
         - -E
         - output.elasticsearch.hosts=http://elasticsearch:9200
-        image: docker.elastic.co/apm/apm-server:6.4.1
-        imagePullPolicy: IfNotPresent
-        name: apm
         resources: {}
       restartPolicy: Always
