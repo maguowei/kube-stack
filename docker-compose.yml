@@ -24,6 +24,7 @@ services:
     restart: always
     environment:
       - "ES_JAVA_OPTS=-Xmx256m -Xms256m"
+      - "xpack.monitoring.enabled=false"
     ports:
       - "5000:5000"
     depends_on:
