@@ -15,10 +15,10 @@ make down
 # replace  http://elasticsearch:9200
 
 kubectl run kibana --generator=run-pod/v1 --image=docker.elastic.co/kibana/kibana:6.5.3 --env="ELASTICSEARCH_URL=http://elasticsearch:9200"
-kubectl expose deployment kibana --port=5601 --type NodePort
+kubectl expose pod kibana --port=5601 --type NodePort
 
 kubectl run apm --generator=run-pod/v1 --image=docker.elastic.co/apm/apm-server:6.5.3 -- -e -E output.elasticsearch.hosts=http://elasticsearch:9200
-kubectl expose deployment apm --port=8200 --type NodePort
+kubectl expose pod apm --port=8200 --type NodePort
 ```
 
 ## kubernetes yaml
