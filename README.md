@@ -14,10 +14,10 @@ make down
 ```bash
 # replace  http://elasticsearch:9200
 
-kubectl run kibana --image=docker.elastic.co/kibana/kibana:6.4.1 --env="ELASTICSEARCH_URL=http://elasticsearch:9200"
+kubectl run kibana --image=docker.elastic.co/kibana/kibana:6.5.3 --env="ELASTICSEARCH_URL=http://elasticsearch:9200"
 kubectl expose deployment kibana --port=5601 --type NodePort
 
-kubectl run apm --image=docker.elastic.co/apm/apm-server:6.4.1 -- -e -E output.elasticsearch.hosts=http://elasticsearch:9200
+kubectl run apm --image=docker.elastic.co/apm/apm-server:6.5.3 -- -e -E output.elasticsearch.hosts=http://elasticsearch:9200
 kubectl expose deployment apm --port=8200 --type NodePort
 ```
 
@@ -35,3 +35,7 @@ kubectl create -f https://raw.githubusercontent.com/maguowei/elastic-apm/master/
 kubectl create -f https://raw.githubusercontent.com/maguowei/elastic-apm/master/kubernetes/kibana-deployment.yaml
 kubectl create -f https://raw.githubusercontent.com/maguowei/elastic-apm/master/kubernetes/kibana-service.yaml
 ```
+
+## Ref:
+
+- [Installing Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/6.5/install-elasticsearch.html)

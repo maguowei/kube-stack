@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: docker.elastic.co/kibana/kibana:6.4.1
+        image: docker.elastic.co/kibana/kibana:6.5.3
         imagePullPolicy: IfNotPresent
         env:
         - name: ELASTICSEARCH_URL

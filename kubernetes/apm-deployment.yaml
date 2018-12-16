@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: apm
-        image: docker.elastic.co/apm/apm-server:6.4.1
+        image: docker.elastic.co/apm/apm-server:6.5.3
         imagePullPolicy: IfNotPresent
         args:
         - -e
