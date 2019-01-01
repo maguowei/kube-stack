@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: apm
@@ -24,3 +24,21 @@ spec:
         - output.elasticsearch.hosts=http://elasticsearch:9200
         resources: {}
       restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apm
+  labels:
+    app: apm
+spec:
+  ports:
+  - name: apm
+    port: 8200
+    protocol: TCP
+    targetPort: 8200
+  selector:
+    app: apm
+  sessionAffinity: None
+  type: NodePort
+  
