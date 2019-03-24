@@ -14,10 +14,13 @@ make down
 ```bash
 # replace  http://elasticsearch:9200
 
-kubectl run kibana --generator=run-pod/v1 --image=docker.elastic.co/kibana/kibana:6.6.1 --env="ELASTICSEARCH_URL=http://elasticsearch:9200"
+kubectl run elasticsearch --generator=run-pod/v1 --image=elasticsearch:6.6.2 --env="discovery.type=single-node" --env "discovery.zen.minimum_master_nodes=1" --env "ES_JAVA_OPTS=-Xmx256m -Xms256m"
+kubectl expose pod elasticsearch --port=9200 --type NodePort
+
+kubectl run kibana --generator=run-pod/v1 --image=kibana:6.6.2 --env="ELASTICSEARCH_URL=http://elasticsearch:9200"
 kubectl expose pod kibana --port=5601 --type NodePort
 
-kubectl run apm --generator=run-pod/v1 --image=docker.elastic.co/apm/apm-server:6.6.1 -- -e -E output.elasticsearch.hosts=http://elasticsearch:9200
+kubectl run apm --generator=run-pod/v1 --image=elastic/apm-server:6.6.2 -- -e -E output.elasticsearch.hosts=http://elasticsearch:9200
 kubectl expose pod apm --port=8200 --type NodePort
 ```
 
@@ -33,7 +36,3 @@ kubectl expose service elasticsearch-client --port=9200 --name=elasticsearch-exp
 kubectl create -f https://raw.githubusercontent.com/maguowei/elastic-apm/master/kubernetes/apm.yaml
 kubectl create -f https://raw.githubusercontent.com/maguowei/elastic-apm/master/kubernetes/kibana.yaml
 ```
-
-## Ref:
-
-- [Installing Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/6.5/install-elasticsearch.html)
