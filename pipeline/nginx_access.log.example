@@ -1,3 +1,0 @@
-log_format access 'nginx_access,$time_local,$request_length,$request_time,$body_bytes_sent,$status,$remote_addr-$http_x_forwarded_for-$http_x_real_ip,$request,"$http_referer","$http_user_agent",$host,$upstream_response_time,"$http_s_pid","$http_s_cid"';
-
-nginx_access,08/Oct/2018:14:13:19 +0800,466,0.198,41,200,10.16.77.138-10.16.77.138-10.16.77.138,GET /post/message?appid=100&abc=123 HTTP/1.0,"-","python-requests/2.19.1",em.example.com,0.198,"-","-"
