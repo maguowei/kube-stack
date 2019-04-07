@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.7'
 services:
   apm:
     image: elastic/apm-server:${ELK_VERSION}
@@ -18,7 +18,7 @@ services:
       - "9200:9200"
       - "9300:9300"
     volumes:
-      - ./data/volume/elasticsearch:/usr/share/elasticsearch/data
+      - elasticsearch:/usr/share/elasticsearch/data
   logstash:
     image: logstash:${ELK_VERSION}
     restart: always
@@ -40,4 +40,6 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
-  
+
+volumes: 
+  elasticsearch
