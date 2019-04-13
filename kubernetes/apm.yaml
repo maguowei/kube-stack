@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: apm
-        image: elastic/apm-server:6.6.2
+        image: elastic/apm-server:7.0.0
         imagePullPolicy: IfNotPresent
         args:
         - -e

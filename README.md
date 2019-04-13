@@ -14,13 +14,13 @@ make down
 ```bash
 # replace  http://elasticsearch:9200
 
-kubectl run elasticsearch --generator=run-pod/v1 --image=elasticsearch:6.6.2 --env="discovery.type=single-node" --env "discovery.zen.minimum_master_nodes=1" --env "ES_JAVA_OPTS=-Xmx256m -Xms256m"
+kubectl run elasticsearch --generator=run-pod/v1 --image=elasticsearch:7.0.0 --env="discovery.type=single-node" --env "discovery.zen.minimum_master_nodes=1" --env "ES_JAVA_OPTS=-Xmx256m -Xms256m"
 kubectl expose pod elasticsearch --port=9200 --type NodePort
 
-kubectl run kibana --generator=run-pod/v1 --image=kibana:6.6.2 --env="ELASTICSEARCH_URL=http://elasticsearch:9200"
+kubectl run kibana --generator=run-pod/v1 --image=kibana:7.0.0 --env="ELASTICSEARCH_URL=http://elasticsearch:9200"
 kubectl expose pod kibana --port=5601 --type NodePort
 
-kubectl run apm --generator=run-pod/v1 --image=elastic/apm-server:6.6.2 -- -e -E output.elasticsearch.hosts=http://elasticsearch:9200
+kubectl run apm --generator=run-pod/v1 --image=elastic/apm-server:7.0.0 -- -e -E output.elasticsearch.hosts=http://elasticsearch:9200
 kubectl expose pod apm --port=8200 --type NodePort
 ```
 

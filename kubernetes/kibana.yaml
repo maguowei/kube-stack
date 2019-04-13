@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kibana
-        image: kibana:6.6.2
+        image: kibana:7.0.0
         imagePullPolicy: IfNotPresent
         env:
         - name: ELASTICSEARCH_URL
