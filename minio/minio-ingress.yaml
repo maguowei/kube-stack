@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: minio
+spec:
+  rules:
+    - host: minio.nuc.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: minio
+              servicePort: 9000
+            

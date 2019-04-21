@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: kibana
+spec:
+  rules:
+    - host: kibana.nuc.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: kibana
+              servicePort: 5601
+            
