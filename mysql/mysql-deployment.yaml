@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8
+        env:
+        - name: MYSQL_DATABASE
+          value: data
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mysql
+      restartPolicy: Always
+      volumes:
+      - name: mysql
+        hostPath:
+          path: /btrfs/data/volumes/default/mysql
