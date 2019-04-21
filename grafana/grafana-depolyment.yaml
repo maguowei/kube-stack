@@ -1,24 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kibana
+  name: grafana
   labels:
-    app: kibana
+    app: grafana
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kibana
+      app: grafana
   template:
     metadata:
       labels:
-        app: kibana
+        app: grafana
     spec:
       containers:
-      - name: kibana
-        image: kibana:7.0.0
-        env:
-        - name: ELASTICSEARCH_URL
-          value: http://elasticsearch:9200
+      - name: grafana
+        image: grafana/grafana:6.1.4
         resources: {}
       restartPolicy: Always
