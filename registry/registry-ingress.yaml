@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: registry
+spec:
+  rules:
+    - host: registry.nuc.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: registry
+              servicePort: 5000
