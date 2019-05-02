@@ -15,19 +15,19 @@ spec:
         app: postgres
     spec:
       containers:
-      - name: postgres
-        image: postgres:11
-        env:
-        - name: POSTGRES_DB
-          value: data
-        - name: POSTGRES_PASSWORD
-          value: root
-        resources: {}
-        volumeMounts:
-        - mountPath: /var/lib/postgresql/data
-          name: postgresql
+        - name: postgres
+          image: postgres:11
+          env:
+            - name: POSTGRES_DB
+              value: data
+            - name: POSTGRES_PASSWORD
+              value: root
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgresql
       restartPolicy: Always
       volumes:
-      - name: postgresql
-        hostPath:
-          path: /btrfs/data/volumes/default/postgres
+        - name: postgresql
+          hostPath:
+            path: /btrfs/data/volumes/default/postgres

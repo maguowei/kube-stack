@@ -15,10 +15,10 @@ spec:
         app: kibana
     spec:
       containers:
-      - name: kibana
-        image: kibana:7.0.0
-        env:
-        - name: ELASTICSEARCH_URL
-          value: http://elasticsearch:9200
-        resources: {}
+        - name: kibana
+          image: kibana:7.0.0
+          env:
+            - name: ELASTICSEARCH_URL
+              value: http://elasticsearch:9200
+          resources: {}
       restartPolicy: Always

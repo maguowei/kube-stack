@@ -15,16 +15,16 @@ spec:
         app: redis
     spec:
       containers:
-      - name: redis
-        image: redis:5
-        args:
-        - --appendonly yes
-        resources: {}
-        volumeMounts:
-        - mountPath: /data
-          name: redis
+        - name: redis
+          image: redis:5
+          args:
+            - --appendonly yes
+          resources: {}
+          volumeMounts:
+            - mountPath: /data
+              name: redis
       restartPolicy: Always
       volumes:
-      - name: redis
-        hostPath:
-          path: /btrfs/data/volumes/default/redis
+        - name: redis
+          hostPath:
+            path: /btrfs/data/volumes/default/redis

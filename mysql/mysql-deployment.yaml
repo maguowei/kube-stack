@@ -15,19 +15,19 @@ spec:
         app: mysql
     spec:
       containers:
-      - name: mysql
-        image: mysql:8
-        env:
-        - name: MYSQL_DATABASE
-          value: data
-        - name: MYSQL_ROOT_PASSWORD
-          value: root
-        resources: {}
-        volumeMounts:
-        - mountPath: /var/lib/mysql
-          name: mysql
+        - name: mysql
+          image: mysql:8
+          env:
+            - name: MYSQL_DATABASE
+              value: data
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysql
       restartPolicy: Always
       volumes:
-      - name: mysql
-        hostPath:
-          path: /btrfs/data/volumes/default/mysql
+        - name: mysql
+          hostPath:
+            path: /btrfs/data/volumes/default/mysql

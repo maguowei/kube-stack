@@ -15,14 +15,14 @@ spec:
         app: prometheus
     spec:
       containers:
-      - name: prometheus
-        image: prom/prometheus
-        resources: {}
-        volumeMounts:
-        - mountPath: /etc/prometheus
-          name: prometheus
+        - name: prometheus
+          image: prom/prometheus
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/prometheus
+              name: prometheus
       restartPolicy: Always
       volumes:
-      - name: prometheus
-        hostPath:
-          path: /btrfs/data/volumes/default/prometheus
+        - name: prometheus
+          hostPath:
+            path: /btrfs/data/volumes/default/prometheus

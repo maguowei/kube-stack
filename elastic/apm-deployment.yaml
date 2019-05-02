@@ -15,11 +15,11 @@ spec:
         app: apm
     spec:
       containers:
-      - name: apm
-        image: elastic/apm-server:7.0.0
-        args:
-        - -e
-        - -E
-        - output.elasticsearch.hosts=http://elasticsearch:9200
-        resources: {}
+        - name: apm
+          image: elastic/apm-server:7.0.0
+          args:
+            - -e
+            - -E
+            - output.elasticsearch.hosts=http://elasticsearch:9200
+          resources: {}
       restartPolicy: Always

@@ -15,21 +15,21 @@ spec:
         app: elasticsearch
     spec:
       containers:
-      - name: elasticsearch
-        image: elasticsearch:7.0.0
-        env:
-        - name: ES_JAVA_OPTS
-          value: -Xmx256m -Xms256m
-        - name: discovery.type
-          value: single-node
-        - name: discovery.zen.minimum_master_nodes
-          value: "1"
-        resources: {}
-        volumeMounts:
-        - mountPath: /usr/share/elasticsearch/data
-          name: elasticsearch
+        - name: elasticsearch
+          image: elasticsearch:7.0.0
+          env:
+            - name: ES_JAVA_OPTS
+              value: -Xmx256m -Xms256m
+            - name: discovery.type
+              value: single-node
+            - name: discovery.zen.minimum_master_nodes
+              value: "1"
+          resources: {}
+          volumeMounts:
+            - mountPath: /usr/share/elasticsearch/data
+              name: elasticsearch
       restartPolicy: Always
       volumes:
-      - name: elasticsearch
-        hostPath:
-          path: /btrfs/data/volumes/default/elasticsearch
+        - name: elasticsearch
+          hostPath:
+            path: /btrfs/data/volumes/default/elasticsearch

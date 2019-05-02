@@ -8,6 +8,6 @@ spec:
   selector:
     app: apm
   ports:
-  - port: 8200
-    targetPort: 8200
+    - port: 8200
+      targetPort: 8200
   

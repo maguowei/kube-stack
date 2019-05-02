@@ -8,5 +8,5 @@ spec:
   selector:
     app: kibana
   ports:
-  - port: 5601
-    targetPort: 5601
+    - port: 5601
+      targetPort: 5601
