@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: etcd
+  labels:
+    app: etcd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: etcd
+  template:
+    metadata:
+      labels:
+        app: etcd
+    spec:
+      containers:
+        - name: etcd
+          image: k8s.gcr.io/etcd-amd64:3.3.10
+          command:
+            - etcd
+            - "--listen-client-urls=http://0.0.0.0:2379"
+            - "--advertise-client-urls=http://0.0.0.0:2379"
+          resources: {}
+      restartPolicy: Always
