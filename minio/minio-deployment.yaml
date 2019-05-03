@@ -20,11 +20,9 @@ spec:
           args:
             - server
             - /export
-          env:
-            - name: MINIO_ACCESS_KEY
-              value: 34FTZK21PRAZDGZIEU8A
-            - name: MINIO_SECRET_KEY
-              value: mC6juH/O76pkir3v4/KhMeCdL4TG9sWA4/cOgXg+
+          envFrom:
+            - secretRef:
+                name: minio
           resources: {}
           volumeMounts:
             - mountPath: /export
