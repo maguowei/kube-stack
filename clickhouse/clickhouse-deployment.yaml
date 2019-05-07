@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clickhouse
+  labels:
+    app: clickhouse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clickhouse
+  template:
+    metadata:
+      labels:
+        app: clickhouse
+    spec:
+      containers:
+        - name: clickhouse
+          image: yandex/clickhouse-server
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/clickhouse
+              name: clickhouse
+      restartPolicy: Always
+      volumes:
+        - name: clickhouse
+          hostPath:
+            path: /btrfs/data/volumes/default/clickhouse
