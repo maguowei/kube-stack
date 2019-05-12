@@ -17,11 +17,9 @@ spec:
       containers:
         - name: postgres
           image: postgres:11
-          env:
-            - name: POSTGRES_DB
-              value: data
-            - name: POSTGRES_PASSWORD
-              value: root
+          envFrom:
+            - secretRef:
+                name: postgres
           resources: {}
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
