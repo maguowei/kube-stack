@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: pulsar
+spec:
+  rules:
+    - host: pulsar.nuc.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: pulsar
+              servicePort: 8080

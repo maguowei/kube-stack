@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pulsar
+  labels:
+    app: pulsar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pulsar
+  template:
+    metadata:
+      labels:
+        app: pulsar
+    spec:
+      containers:
+        - name: pulsar
+          image: apachepulsar/pulsar-all:latest
+          args:
+            - bin/pulsar
+            - standalone
+          resources: {}
+          volumeMounts:
+            - mountPath: /pulsar/data
+              name: pulsar
+      restartPolicy: Always
+      volumes:
+        - name: pulsar
+          hostPath:
+            path: /var/k8s/volumes/default/pulsar
