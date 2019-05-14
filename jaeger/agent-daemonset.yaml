@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: jaeger-agent
+  labels:
+    app: jaeger-agent
+spec:
+  selector:
+    matchLabels:
+      app: jaeger-agent
+  template:
+    metadata:
+      labels:
+        app: jaeger-agent
+    spec:
+      containers:
+        - name: jaeger-agent
+          image: jaegertracing/jaeger-agent:1.11.0
+          env:
+            - name: REPORTER_GRPC_HOST_PORT
+              value: "jaeger-collector:14250"
+          resources: {}
+      restartPolicy: Always
