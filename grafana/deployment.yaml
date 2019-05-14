@@ -30,4 +30,4 @@ spec:
       volumes:
         - name: grafana
           hostPath:
-            path: /var/kubernetes/volumes/default/grafana
+            path: /var/k8s/volumes/default/grafana

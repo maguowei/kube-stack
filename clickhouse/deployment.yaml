@@ -25,4 +25,4 @@ spec:
       volumes:
         - name: clickhouse
           hostPath:
-            path: /var/kubernetes/volumes/default/clickhouse
+            path: /var/k8s/volumes/default/clickhouse

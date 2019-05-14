@@ -28,4 +28,4 @@ spec:
       volumes:
         - name: postgresql
           hostPath:
-            path: /var/kubernetes/volumes/default/postgres
+            path: /var/k8s/volumes/default/postgres

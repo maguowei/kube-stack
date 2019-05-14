@@ -27,4 +27,4 @@ spec:
       volumes:
         - name: redis
           hostPath:
-            path: /var/kubernetes/volumes/default/redis
+            path: /var/k8s/volumes/default/redis

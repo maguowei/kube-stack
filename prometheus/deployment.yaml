@@ -25,4 +25,4 @@ spec:
       volumes:
         - name: prometheus
           hostPath:
-            path: /var/kubernetes/volumes/default/prometheus
+            path: /var/k8s/volumes/default/prometheus

@@ -28,4 +28,4 @@ spec:
       volumes:
         - name: mysql
           hostPath:
-            path: /var/kubernetes/volumes/default/mysql
+            path: /var/k8s/volumes/default/mysql
