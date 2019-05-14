@@ -27,4 +27,4 @@ spec:
       volumes:
         - name: redis
           hostPath:
-            path: /btrfs/data/volumes/default/redis
+            path: /var/kubernetes/volumes/default/redis

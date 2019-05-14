@@ -30,4 +30,4 @@ spec:
       volumes:
         - name: grafana
           hostPath:
-            path: /btrfs/data/volumes/default/grafana
+            path: /var/kubernetes/volumes/default/grafana

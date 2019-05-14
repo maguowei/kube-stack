@@ -28,4 +28,4 @@ spec:
       volumes:
         - name: postgresql
           hostPath:
-            path: /btrfs/data/volumes/default/postgres
+            path: /var/kubernetes/volumes/default/postgres

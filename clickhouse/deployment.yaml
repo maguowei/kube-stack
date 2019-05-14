@@ -25,4 +25,4 @@ spec:
       volumes:
         - name: clickhouse
           hostPath:
-            path: /btrfs/data/volumes/default/clickhouse
+            path: /var/kubernetes/volumes/default/clickhouse
