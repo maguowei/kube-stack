@@ -6,7 +6,7 @@ metadata:
   name: apm
 spec:
   rules:
-    - host: apm.nuc.io
+    - host: apm.nuc
       http:
         paths:
           - path: /

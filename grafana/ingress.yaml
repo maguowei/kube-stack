@@ -6,7 +6,7 @@ metadata:
   name: grafana
 spec:
   rules:
-    - host: grafana.nuc.io
+    - host: grafana.nuc
       http:
         paths:
           - path: /

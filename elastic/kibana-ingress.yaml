@@ -6,7 +6,7 @@ metadata:
   name: kibana
 spec:
   rules:
-    - host: kibana.nuc.io
+    - host: kibana.nuc
       http:
         paths:
           - path: /

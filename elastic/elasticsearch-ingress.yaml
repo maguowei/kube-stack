@@ -6,7 +6,7 @@ metadata:
   name: elasticsearch
 spec:
   rules:
-    - host: elasticsearch.nuc.io
+    - host: elasticsearch.nuc
       http:
         paths:
           - path: /

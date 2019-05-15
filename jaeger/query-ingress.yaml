@@ -6,7 +6,7 @@ metadata:
   name: jaeger-query
 spec:
   rules:
-    - host: jaeger.nuc.io
+    - host: jaeger.nuc
       http:
         paths:
           - path: /

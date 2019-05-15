@@ -6,7 +6,7 @@ metadata:
   name: prometheus
 spec:
   rules:
-    - host: prometheus.nuc.io
+    - host: prometheus.nuc
       http:
         paths:
           - path: /

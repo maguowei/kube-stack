@@ -6,7 +6,7 @@ metadata:
   name: minio
 spec:
   rules:
-    - host: minio.nuc.io
+    - host: minio.nuc
       http:
         paths:
           - path: /
