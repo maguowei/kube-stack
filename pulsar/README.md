@@ -2,7 +2,7 @@
 
 ```bash
 $ kubectl create -f pulsar
-$ kubectl expose service pulsar --port 8080 --type NodePort --name pulsar-node-port
+$ kubectl expose service pulsar --port 6650 --type NodePort --name pulsar-node-port
 ```
 
 
