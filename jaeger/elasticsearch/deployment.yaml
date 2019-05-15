@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elasticsearch
+  labels:
+    app: elasticsearch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      containers:
+        - name: elasticsearch
+          image: elasticsearch:6.7.2
+          env:
+            - name: ES_JAVA_OPTS
+              value: -Xmx256m -Xms256m
+            - name: discovery.type
+              value: single-node
+            - name: discovery.zen.minimum_master_nodes
+              value: "1"
+          resources: {}
+          volumeMounts:
+            - mountPath: /usr/share/elasticsearch/data
+              name: elasticsearch
+      restartPolicy: Always
+      volumes:
+        - name: elasticsearch
+          hostPath:
+            path: /var/k8s/volumes/default/jaeger/elasticsearch
