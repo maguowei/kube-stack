@@ -20,4 +20,6 @@ spec:
             - name: REPORTER_GRPC_HOST_PORT
               value: "jaeger-collector:14250"
           resources: {}
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       restartPolicy: Always
