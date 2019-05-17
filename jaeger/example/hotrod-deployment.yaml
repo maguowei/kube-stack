@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jaeger-example-hotrod
+  labels:
+    app: jaeger-example-hotrod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jaeger-example-hotrod
+  template:
+    metadata:
+      labels:
+        app: jaeger-example-hotrod
+    spec:
+      containers:
+        - name: jaeger-example-query
+          image: jaegertracing/example-hotrod:1.12.0
+          env:
+            - name: JAEGER_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+          resources: {}
+      restartPolicy: Always
