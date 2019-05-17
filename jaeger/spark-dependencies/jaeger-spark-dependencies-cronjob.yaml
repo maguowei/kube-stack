@@ -1,0 +1,29 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: jaeger-spark-dependencies
+  labels:
+    app: jaeger-spark-dependencies
+spec:
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+    spec:
+      template:
+        metadata:
+          labels:
+            app: jaeger-spark-dependencies
+        spec:
+          containers:
+          - name: jaeger-spark-dependencies
+            image: jaegertracing/spark-dependencies
+            env:
+              - name: STORAGE
+                value: elasticsearch
+              - name: ES_NODES
+                value: http://elasticsearch:9200
+              - name: ES_NODES_WAN_ONLY
+                value: "true"
+            resources: {}
+          restartPolicy: Never
+  schedule: 55 23 * * *
