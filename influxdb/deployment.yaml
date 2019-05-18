@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb
+  labels:
+    app: influxdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      containers:
+        - name: influxdb
+          image: influxdb:1.7
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/influxdb
+              name: influxdb
+      restartPolicy: Always
+      volumes:
+        - name: influxdb
+          hostPath:
+            path: /var/k8s/volumes/default/influxdb
