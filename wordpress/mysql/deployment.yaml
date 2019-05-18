@@ -19,7 +19,7 @@ spec:
           image: mysql:5.7
           env:
             - name: MYSQL_DATABASE
-              value: data
+              value: wordpress
           envFrom:
             - secretRef:
                 name: mysql-wordpress
