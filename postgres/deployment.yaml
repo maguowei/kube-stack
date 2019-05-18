@@ -17,6 +17,9 @@ spec:
       containers:
         - name: postgres
           image: postgres:11
+          env:
+            - name: POSTGRES_DB
+              value: data
           envFrom:
             - secretRef:
                 name: postgres

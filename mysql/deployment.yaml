@@ -17,6 +17,9 @@ spec:
       containers:
         - name: mysql
           image: mysql:8
+          env:
+            - name: MYSQL_DATABASE
+              value: data
           envFrom:
             - secretRef:
                 name: mysql
