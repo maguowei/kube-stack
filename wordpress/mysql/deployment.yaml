@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-wordpress
+  labels:
+    app: mysql-wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-wordpress
+  template:
+    metadata:
+      labels:
+        app: mysql-wordpress
+    spec:
+      containers:
+        - name: mysql-wordpress
+          image: mysql:5.7
+          env:
+            - name: MYSQL_DATABASE
+              value: data
+          envFrom:
+            - secretRef:
+                name: mysql-wordpress
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysql
+      restartPolicy: Always
+      volumes:
+        - name: mysql
+          hostPath:
+            path: /var/k8s/volumes/default/wordpress/mysql
