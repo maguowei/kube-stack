@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: elasticsearch
+  name: jaeger-elasticsearch
   labels:
-    app: elasticsearch
+    app: jaeger-elasticsearch
 spec:
   selector:
-    app: elasticsearch
+    app: jaeger-elasticsearch
   ports:
     - name: "9200"
       port: 9200

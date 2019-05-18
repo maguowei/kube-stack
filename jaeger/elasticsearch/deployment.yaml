@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: elasticsearch
+  name: jaeger-elasticsearch
   labels:
-    app: elasticsearch
+    app: jaeger-elasticsearch
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: elasticsearch
+      app: jaeger-elasticsearch
   template:
     metadata:
       labels:
-        app: elasticsearch
+        app: jaeger-elasticsearch
     spec:
       containers:
         - name: elasticsearch
