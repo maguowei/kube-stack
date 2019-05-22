@@ -15,7 +15,7 @@ $ kubectl expose service jaeger-example-hotrod --port 8080 --type NodePort --nam
 $ kubectl create -f jaeger/spark-dependencies
 
 # run the job only once
-$ kubectl run jaeger-spark-dependencies --env=STORAGE=elasticsearch --env ES_NODES=http://jaeger-elasticsearch:9200 --env ES_NODES_WAN_ONLY=true --restart=Never --image=jaegertracing/spark-dependencies
+$ kubectl run -it --rm jaeger-spark-dependencies --env=STORAGE=elasticsearch --env ES_NODES=http://jaeger-elasticsearch:9200 --env ES_NODES_WAN_ONLY=true --restart=Never --image=jaegertracing/spark-dependencies
 ```
 
 ## clean
