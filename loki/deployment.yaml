@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loki
+  labels:
+    app: loki
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loki
+  template:
+    metadata:
+      labels:
+        app: loki
+    spec:
+      containers:
+        - name: loki
+          image: grafana/loki:latest
+          args: 
+            - "-config.file=/etc/loki/local-config.yaml"
+          resources: {}
+          volumeMounts:
+            - mountPath: /tmp/loki/
+              name: loki
+      restartPolicy: Always
+      volumes:
+        - name: loki
+          hostPath:
+            path: /var/k8s/volumes/default/loki
