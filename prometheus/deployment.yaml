@@ -24,5 +24,8 @@ spec:
       restartPolicy: Always
       volumes:
         - name: prometheus
-          hostPath:
-            path: /var/k8s/volumes/default/prometheus
+          configMap:
+            name: prometheus
+            items:
+              - key: prometheus
+                path: prometheus.yml
