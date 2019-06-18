@@ -20,12 +20,17 @@ spec:
           resources: {}
           volumeMounts:
             - mountPath: /etc/prometheus
+              name: prometheus-conf
+            - mountPath: /prometheus
               name: prometheus
       restartPolicy: Always
       volumes:
-        - name: prometheus
+        - name: prometheus-conf
           configMap:
             name: prometheus
             items:
-              - key: prometheus
+              - key: prometheus-yaml
                 path: prometheus.yml
+        - name: prometheus
+          hostPath:
+            path: /var/k8s/volumes/default/prometheus
