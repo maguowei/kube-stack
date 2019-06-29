@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka
+  labels:
+    app: kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+        - name: kafka
+          image: confluentinc/cp-kafka:latest
+          env:
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: KAFKA_BROKER_ID
+            value: "1"
+          - name: KAFKA_ZOOKEEPER_CONNECT
+            value: zookeeper:2181
+          - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
+            value: "1"
+          command:
+          - sh
+          - -exc
+          - |
+            unset KAFKA_PORT && \
+            export KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${POD_IP}:9092 && \
+            exec /etc/confluent/docker/run
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/kafka
+              name: kafka
+      restartPolicy: Always
+      volumes:
+        - name: kafka
+          hostPath:
+            path: /var/k8s/volumes/default/kafka
