@@ -41,10 +41,10 @@ spec:
             exec /etc/confluent/docker/run
           resources: {}
           volumeMounts:
-            - mountPath: /var/lib/kafka
+            - mountPath: /var/lib/kafka/data
               name: kafka
       restartPolicy: Always
       volumes:
         - name: kafka
           hostPath:
-            path: /var/k8s/volumes/default/kafka
+            path: /var/k8s/volumes/default/kafka/data
