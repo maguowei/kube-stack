@@ -22,8 +22,8 @@ spec:
           volumeMounts:
             - mountPath: /etc/promtail
               name: promtail-conf
-            - mountPath: /var/log
-              name: promtail-log
+            - mountPath: /var/lib/docker/containers
+              name: docker-containers-logs
       restartPolicy: Always
       volumes:
         - name: promtail-conf
@@ -32,6 +32,6 @@ spec:
             items: 
               - key: promtail
                 path: promtail_config.yaml
-        - name: promtail-log
+        - name: docker-containers-logs
           hostPath:
-            path: /var/k8s/volumes/default/promtail
+            path: /var/lib/docker/containers
