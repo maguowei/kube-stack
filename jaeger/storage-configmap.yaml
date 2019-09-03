@@ -4,6 +4,4 @@ metadata:
   name: jaeger-storage
 data:
   SPAN_STORAGE_TYPE: "elasticsearch"
-  ES_SERVER_URLS: "http://jaeger-elasticsearch:9200"
-
-
+  ES_SERVER_URLS: "http://elasticsearch:9200"

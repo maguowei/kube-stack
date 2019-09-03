@@ -3,7 +3,7 @@
 ## Deployment
 
 ```bash
-$ kubectl create -f jaeger/elasticsearch
+$ kubectl create -f elastic
 $ kubectl create -f jaeger
 $ kubectl expose service jaeger-query --port 16686 --type NodePort --name jaeger-query-node-port
 
@@ -15,17 +15,13 @@ $ kubectl expose service jaeger-example-hotrod --port 8080 --type NodePort --nam
 $ kubectl create -f jaeger/spark-dependencies
 
 # run the job only once
-$ kubectl run -it --rm jaeger-spark-dependencies --env=STORAGE=elasticsearch --env ES_NODES=http://jaeger-elasticsearch:9200 --env ES_NODES_WAN_ONLY=true --restart=Never --image=jaegertracing/spark-dependencies
+$ kubectl run -it --rm jaeger-spark-dependencies --env=STORAGE=elasticsearch --env ES_NODES=http://elasticsearch:9200 --env ES_NODES_WAN_ONLY=true --restart=Never --image=jaegertracing/spark-dependencies
 ```
 
 ## clean
+
 ```bash
 $ kubectl delete -f jaeger/spark-dependencies
 $ kubectl delete -f jaeger/example
 $ kubectl delete -f jaeger
-$ kubectl delete -f jaeger/elasticsearch
 ```
-
-## TODO
-
-- [Support Elasticsearch 7.x](https://github.com/jaegertracing/jaeger/issues/1474)
