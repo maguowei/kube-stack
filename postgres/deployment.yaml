@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:11
+          image: postgres:12
           env:
             - name: POSTGRES_DB
               value: data
