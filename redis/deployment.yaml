@@ -17,6 +17,9 @@ spec:
       containers:
         - name: redis
           image: redis:5
+          # args:
+          #   - --dbfilename dump.rdb
+          #   - --dir /data
           resources:
             requests:
               cpu: "1"
