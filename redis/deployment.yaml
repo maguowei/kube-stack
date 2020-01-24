@@ -19,7 +19,7 @@ spec:
           image: redis:5
           resources:
             requests:
-              cpu: "2"
+              cpu: "1"
               memory: "2Gi"
             limits:
               cpu: "2"
@@ -27,6 +27,8 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: redis
+      # nodeSelector:
+      #   node_store_type: db
       restartPolicy: Always
       volumes:
         - name: redis
