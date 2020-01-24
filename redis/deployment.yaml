@@ -17,9 +17,13 @@ spec:
       containers:
         - name: redis
           image: redis:5
-          args:
-            - --appendonly yes
-          resources: {}
+          resources:
+            requests:
+              cpu: "2"
+              memory: "2Gi"
+            limits:
+              cpu: "2"
+              memory: "4Gi"
           volumeMounts:
             - mountPath: /data
               name: redis
