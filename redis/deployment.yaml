@@ -31,7 +31,7 @@ spec:
             - mountPath: /data
               name: redis
       # nodeSelector:
-      #   node_store_type: db
+      #   node_store_type: redis
       restartPolicy: Always
       volumes:
         - name: redis
