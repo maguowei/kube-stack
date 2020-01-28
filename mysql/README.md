@@ -22,3 +22,4 @@ set global innodb_buffer_pool_size=1073741824;
 ## Grafana 仪表盘
 
 - [MySQL Overview](https://grafana.com/grafana/dashboards/7362)
+- [Mysql - Prometheus](https://grafana.com/grafana/dashboards/6239)
