@@ -1,4 +1,4 @@
-# Redis
+# MySQL
 
 ```bash
 # label for nodeSelector
