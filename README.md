@@ -1,6 +1,5 @@
 # Kubernetes Stack
 
-
 ```text
 .
 ├── LICENSE
@@ -74,7 +73,10 @@
 │   ├── secret.yaml
 │   └── service.yaml
 ├── mysql
+│   ├── README.md
+│   ├── configmap.yaml
 │   ├── deployment.yaml
+│   ├── mysqld-exporter.yaml
 │   ├── secret.yaml
 │   └── service.yaml
 ├── postgres
@@ -82,9 +84,13 @@
 │   ├── secret.yaml
 │   └── service.yaml
 ├── prometheus
+│   ├── README.md
 │   ├── configmap.yaml
 │   ├── deployment.yaml
 │   ├── ingress.yaml
+│   ├── node-exporter
+│   │   └── node-exporter-daemonset.yaml
+│   ├── rbac.yml
 │   └── service.yaml
 ├── pulsar
 │   ├── README.md
@@ -93,5 +99,6 @@
 └── redis
     ├── README.md
     ├── deployment.yaml
+    ├── redis-exporter.yaml
     └── service.yaml
 ```
