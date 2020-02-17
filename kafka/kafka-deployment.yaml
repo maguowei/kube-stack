@@ -18,6 +18,10 @@ spec:
         - name: kafka
           image: confluentinc/cp-kafka:latest
           env:
+          - name: HOST_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
           - name: POD_IP
             valueFrom:
               fieldRef:
@@ -37,7 +41,7 @@ spec:
           - -exc
           - |
             unset KAFKA_PORT && \
-            export KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${POD_IP}:9092 && \
+            export KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:32400 && \
             exec /etc/confluent/docker/run
           resources: {}
           volumeMounts:

@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kafka-node-port
+  name: kafka-headless
   labels:
     app: kafka
 spec:
   selector:
     app: kafka
   ports:
-    - port: 32400
-      targetPort: 32400
-      nodePort: 32400
-  type: NodePort
+    - port: 9092
+      targetPort: 9092
+  clusterIP: None
