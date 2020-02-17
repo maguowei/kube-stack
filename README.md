@@ -12,15 +12,18 @@
 │   ├── deployment.yaml
 │   └── service.yaml
 ├── elastic
-│   ├── apm-deployment.yaml
-│   ├── apm-ingress.yaml
-│   ├── apm-service.yaml
-│   ├── elasticsearch-deployment.yaml
-│   ├── elasticsearch-ingress.yaml
-│   ├── elasticsearch-service.yaml
-│   ├── kibana-deployment.yaml
-│   ├── kibana-ingress.yaml
-│   └── kibana-service.yaml
+│   ├── apm
+│   │   ├── apm-deployment.yaml
+│   │   ├── apm-ingress.yaml
+│   │   └── apm-service.yaml
+│   ├── elasticsearch
+│   │   ├── elasticsearch-deployment.yaml
+│   │   ├── elasticsearch-ingress.yaml
+│   │   └── elasticsearch-service.yaml
+│   └── kibana
+│       ├── kibana-deployment.yaml
+│       ├── kibana-ingress.yaml
+│       └── kibana-service.yaml
 ├── etcd
 │   ├── README.md
 │   ├── deployment.yaml
@@ -53,6 +56,7 @@
 ├── kafka
 │   ├── README.md
 │   ├── kafka-deployment.yaml
+│   ├── kafka-headless-service.yaml
 │   ├── kafka-service.yaml
 │   ├── zookeeper-deployment.yaml
 │   └── zookeeper-service.yaml
