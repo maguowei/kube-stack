@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nats
+  labels:
+    app: nats
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: nats
+      labels:
+        app: nats
+    spec:
+      containers:
+        - name: nats
+          image: nats
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: nats
