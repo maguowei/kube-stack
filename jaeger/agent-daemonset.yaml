@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: jaeger-agent
-          image: jaegertracing/jaeger-agent:1.14.0
+          image: jaegertracing/jaeger-agent:1.16.0
           env:
             - name: REPORTER_GRPC_HOST_PORT
               value: "jaeger-collector:14250"
