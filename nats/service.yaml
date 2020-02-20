@@ -6,5 +6,7 @@ spec:
   selector:
     app: nats
   ports:
-    - port: 4222
-  type: NodePort
+    - name: client
+      port: 4222
+    - name: management
+      port: 8222
