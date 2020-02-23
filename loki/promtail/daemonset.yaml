@@ -30,7 +30,7 @@ spec:
           configMap: 
             name: promtail
             items: 
-              - key: promtail
+              - key: promtail_config.yaml
                 path: promtail_config.yaml
         - name: docker-containers-logs
           hostPath:

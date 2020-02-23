@@ -30,7 +30,7 @@ spec:
           configMap:
             name: prometheus
             items:
-              - key: prometheus-yaml
+              - key: prometheus.yml
                 path: prometheus.yml
         - name: prometheus
           hostPath:
