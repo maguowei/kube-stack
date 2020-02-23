@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: mysql
 data:
-  mysql-custom-cnf: |
+  mysql-custom.cnf: |
     [client]
     default-character-set=utf8mb4
     [mysqld]
