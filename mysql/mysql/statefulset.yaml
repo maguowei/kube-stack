@@ -9,6 +9,8 @@ data:
     [mysqld]
     innodb_buffer_pool_size=800M
     max_connections=500
+    gtid_mode=ON
+    enforce-gtid-consistency=ON
   master.cnf: |
     [mysqld]
     log-bin
@@ -66,19 +68,29 @@ spec:
               mountPath: /etc/mysql/conf.d
             - name: mysql
               mountPath: /var/lib/mysql
-        - name: sync-data
+        - name: dump-data
           image: mysql:8
           command:
             - bash
             - "-c"
             - |
               set -ex
-              echo TODO
+              [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
+              ordinal=${BASH_REMATCH[1]}
+              if [[ $ordinal -eq 0 ]]; then
+                echo do nothing
+              else
+                sleep 30
+                rm -f /data/mysql-snapshot/master-database.sql
+                mysqldump --all-databases --master-data -hmysql-0.mysql -uroot -proot > /data/mysql-snapshot/master-database.sql
+              fi
           volumeMounts:
             - name: conf
               mountPath: /etc/mysql/conf.d
             - name: mysql
               mountPath: /var/lib/mysql
+            - name: mysql-snapshot
+              mountPath: /data/mysql-snapshot
       containers:
         - name: mysql
           image: mysql:8
@@ -90,6 +102,38 @@ spec:
               mountPath: /etc/mysql/conf.d
             - name: mysql
               mountPath: /var/lib/mysql
+            - name: mysql-snapshot
+              mountPath: /data/mysql-snapshot
+        - name: start-slave
+          image: mysql:8
+          command:
+            - bash
+            - "-c"
+            - |
+              set -ex
+              echo hello
+              [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
+              ordinal=${BASH_REMATCH[1]}
+              if [[ $ordinal -eq 0 ]]; then
+                echo do nothing
+              else
+                sleep 30
+                mysql -hmysql-${ordinal}.mysql -uroot -proot < /data/mysql-snapshot/master-database.sql
+                mysql -hmysql-${ordinal}.mysql -uroot -proot -e "CHANGE MASTER TO MASTER_HOST = 'mysql-0.mysql', MASTER_PORT = 3306, MASTER_USER = 'root', MASTER_PASSWORD = 'root', MASTER_AUTO_POSITION = 1;"
+                mysql -hmysql-${ordinal}.mysql -uroot -proot -e "start slave;"
+              fi
+              while true
+              do
+                echo hello
+              done
+
+          volumeMounts:
+            - name: conf
+              mountPath: /etc/mysql/conf.d
+            - name: mysql
+              mountPath: /var/lib/mysql
+            - name: mysql-snapshot
+              mountPath: /data/mysql-snapshot
 
       restartPolicy: Always
       volumes:
@@ -99,6 +143,8 @@ spec:
           configMap:
             name: mysql
         - name: mysql
+          emptyDir: {}
+        - name: mysql-snapshot
           emptyDir: {}
 ---
 apiVersion: v1
