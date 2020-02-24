@@ -3,7 +3,6 @@
 ```text
 .
 ├── LICENSE
-├── Makefile
 ├── README.md
 ├── cassandra
 │   ├── deployment.yaml
@@ -81,7 +80,13 @@
 │   ├── configmap.yaml
 │   ├── deployment.yaml
 │   ├── mysqld-exporter.yaml
+│   ├── mysqlha
+│   │   ├── README.md
+│   │   └── statefulset.yaml
 │   ├── secret.yaml
+│   └── service.yaml
+├── nats
+│   ├── deployment.yaml
 │   └── service.yaml
 ├── postgres
 │   ├── deployment.yaml
