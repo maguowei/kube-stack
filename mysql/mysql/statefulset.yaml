@@ -70,6 +70,9 @@ spec:
               mountPath: /var/lib/mysql
         - name: dump-data
           image: mysql:8
+          envFrom:
+            - secretRef:
+                name: mysql
           command:
             - bash
             - "-c"
@@ -80,9 +83,9 @@ spec:
               if [[ $ordinal -eq 0 ]]; then
                 echo do nothing
               else
-                sleep 30
+                until mysql -hmysql-0.mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "SELECT 1"; do sleep 5; done
                 rm -f /data/mysql-snapshot/master-database.sql
-                mysqldump --all-databases --master-data -hmysql-0.mysql -uroot -proot > /data/mysql-snapshot/master-database.sql
+                mysqldump --all-databases --master-data -hmysql-0.mysql -uroot -p${MYSQL_ROOT_PASSWORD} > /data/mysql-snapshot/master-database.sql
               fi
           volumeMounts:
             - name: conf
@@ -106,6 +109,9 @@ spec:
               mountPath: /data/mysql-snapshot
         - name: start-slave
           image: mysql:8
+          envFrom:
+            - secretRef:
+                name: mysql
           command:
             - bash
             - "-c"
@@ -117,13 +123,14 @@ spec:
               if [[ $ordinal -eq 0 ]]; then
                 echo do nothing
               else
-                sleep 30
-                mysql -hmysql-${ordinal}.mysql -uroot -proot < /data/mysql-snapshot/master-database.sql
-                mysql -hmysql-${ordinal}.mysql -uroot -proot -e "CHANGE MASTER TO MASTER_HOST = 'mysql-0.mysql', MASTER_PORT = 3306, MASTER_USER = 'root', MASTER_PASSWORD = 'root', MASTER_AUTO_POSITION = 1;"
-                mysql -hmysql-${ordinal}.mysql -uroot -proot -e "start slave;"
+                until mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "SELECT 1"; do sleep 5; done
+                mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} < /data/mysql-snapshot/master-database.sql
+                mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "CHANGE MASTER TO MASTER_HOST = 'mysql-0.mysql', MASTER_PORT = 3306, MASTER_USER = 'root', MASTER_PASSWORD = 'root', MASTER_AUTO_POSITION = 1;"
+                mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "start slave;"
               fi
               while true
               do
+                sleep 5
                 echo hello
               done
 
