@@ -120,12 +120,14 @@ spec:
               echo hello
               [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
               ordinal=${BASH_REMATCH[1]}
+              until mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "SELECT 1"; do sleep 5; done
               if [[ $ordinal -eq 0 ]]; then
-                echo do nothing
+                mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "CREATE USER 'repl'@'%' IDENTIFIED BY 'repl';"
+                mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';"
+                mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "FLUSH PRIVILEGES;"
               else
-                until mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "SELECT 1"; do sleep 5; done
                 mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} < /data/mysql-snapshot/master-database.sql
-                mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "CHANGE MASTER TO MASTER_HOST = 'mysql-0.mysql', MASTER_PORT = 3306, MASTER_USER = 'root', MASTER_PASSWORD = 'root', MASTER_AUTO_POSITION = 1;"
+                mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "CHANGE MASTER TO MASTER_HOST = 'mysql-0.mysql', MASTER_PORT = 3306, MASTER_USER = 'repl', MASTER_PASSWORD = 'repl', MASTER_AUTO_POSITION = 1, GET_MASTER_PUBLIC_KEY = 1;"
                 mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "start slave;"
               fi
               while true
