@@ -27,6 +27,9 @@
 │   ├── README.md
 │   ├── deployment.yaml
 │   └── service.yaml
+├── filebeat
+│   ├── README.md
+│   └── filebeat-daemonset.yaml
 ├── grafana
 │   ├── configmap.yaml
 │   ├── deployment.yaml
