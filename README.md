@@ -19,6 +19,9 @@
 │   │   ├── elasticsearch-deployment.yaml
 │   │   ├── elasticsearch-ingress.yaml
 │   │   └── elasticsearch-service.yaml
+│   ├── filebeat
+│   │   ├── README.md
+│   │   └── filebeat-daemonset.yaml
 │   └── kibana
 │       ├── kibana-deployment.yaml
 │       ├── kibana-ingress.yaml
@@ -27,9 +30,6 @@
 │   ├── README.md
 │   ├── deployment.yaml
 │   └── service.yaml
-├── filebeat
-│   ├── README.md
-│   └── filebeat-daemonset.yaml
 ├── grafana
 │   ├── configmap.yaml
 │   ├── deployment.yaml
