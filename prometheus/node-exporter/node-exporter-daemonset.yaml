@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: node-exporter
-          image: quay.io/prometheus/node-exporter
+          image: prom/node-exporter
           args:
             - --path.rootfs=/host
           resources:

@@ -36,7 +36,7 @@ data:
 
       - job_name: 'node_exporter'
         static_configs:
-        - targets: ['10.0.0.8:9100']
+        - targets: ['node-exporter:9100']
 
       - job_name: 'kubernetes-apiservers'
 
