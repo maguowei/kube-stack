@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: grafana
-          image: grafana/grafana:6.5.2
+          image: grafana/grafana:7.0.0
           envFrom:
             - secretRef:
                 name: grafana
