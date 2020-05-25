@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: promtail
-          image: grafana/promtail:master
+          image: grafana/promtail:1.5.0
           args:
             - "-config.file=/etc/promtail/promtail_config.yaml"
           resources: {}
@@ -28,9 +28,9 @@ spec:
       volumes:
         - name: promtail-conf
           configMap: 
-            name: promtail
+            name: promtail-config
             items: 
-              - key: promtail_config.yaml
+              - key: promtail
                 path: promtail_config.yaml
         - name: docker-containers-logs
           hostPath:
