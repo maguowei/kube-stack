@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: etcd
-          image: gotok8s/etcd:3.3.10
+          image: gotok8s/etcd:3.4.3-0
           command:
             - etcd
             - "--listen-client-urls=http://0.0.0.0:2379"
