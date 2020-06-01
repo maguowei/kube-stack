@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chrome
+  labels:
+    app: chrome
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: chrome
+      labels:
+        app: chrome
+    spec:
+      containers:
+        - name: chrome
+          image: browserless/chrome
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: chrome
