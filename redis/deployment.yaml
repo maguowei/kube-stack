@@ -35,5 +35,5 @@ spec:
       restartPolicy: Always
       volumes:
         - name: redis
-          hostPath:
-            path: /var/k8s/volumes/default/redis
+          persistentVolumeClaim:
+            claimName: redis-pv-claim
