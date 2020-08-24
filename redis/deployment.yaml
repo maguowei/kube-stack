@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis:5
+          image: redis:6
           # args:
           #   - --dbfilename dump.rdb
           #   - --dir /data
