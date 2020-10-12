@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pulsar-manager
+  labels:
+    app: pulsar-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pulsar-manager
+  template:
+    metadata:
+      labels:
+        app: pulsar-manager
+    spec:
+      containers:
+        - name: pulsar-manager
+          image: apachepulsar/pulsar-manager:v0.2.0
+          env:
+            - name: SPRING_CONFIGURATION_FILE
+              value: /pulsar-manager/pulsar-manager/application.properties
+          resources: {}
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pulsar-manager
+  labels:
+    app: pulsar-manager
+spec:
+  selector:
+    app: pulsar-manager
+  ports:
+    - name: port-7750
+      port: 7750
+      targetPort: 7750
+    - name: port-9527
+      port: 9527
+      targetPort: 9527
