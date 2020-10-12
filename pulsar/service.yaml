@@ -11,4 +11,6 @@ spec:
     - name: pulsar
       port: 6650
       targetPort: 6650
-
+    - name: http
+      port: 8080
+      targetPort: 8080
