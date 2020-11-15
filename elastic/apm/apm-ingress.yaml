@@ -10,7 +10,10 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: apm
-              servicePort: 8200
+              service:
+                name: apm
+                port:
+                  number: 8200
             

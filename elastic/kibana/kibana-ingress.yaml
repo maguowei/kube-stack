@@ -10,7 +10,10 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: kibana
-              servicePort: 5601
+              service:
+                name: kibana
+                port:
+                  number: 5601
             

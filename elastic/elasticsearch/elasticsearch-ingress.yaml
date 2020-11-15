@@ -10,7 +10,10 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: elasticsearch
-              servicePort: 9200
+              service:
+                name: elasticsearch
+                port:
+                  number: 9200
             

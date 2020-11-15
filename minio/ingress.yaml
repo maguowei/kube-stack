@@ -10,7 +10,10 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: minio
-              servicePort: 9000
+              service:
+                name: minio
+                port:
+                  number: 9000
             

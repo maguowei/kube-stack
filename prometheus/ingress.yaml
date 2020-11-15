@@ -10,6 +10,9 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: prometheus
-              servicePort: 9090
+              service:
+                name: prometheus
+                port:
+                  number: 9090

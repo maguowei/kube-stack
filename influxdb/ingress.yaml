@@ -10,6 +10,9 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: influxdb
-              servicePort: 8086
+              service:
+                name: influxdb
+                port:
+                  number: 8086
