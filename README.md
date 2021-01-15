@@ -4,7 +4,8 @@
 .
 ├── LICENSE
 ├── README.md
-├── cassandra
+├── chrome
+│   ├── README.md
 │   ├── deployment.yaml
 │   └── service.yaml
 ├── clickhouse
@@ -107,10 +108,13 @@
 ├── pulsar
 │   ├── README.md
 │   ├── deployment.yaml
+│   ├── pulsar-manager-deployment.yaml
 │   └── service.yaml
 └── redis
     ├── README.md
     ├── deployment.yaml
+    ├── pv.yaml
+    ├── pvc.yaml
     ├── redis-exporter.yaml
     └── service.yaml
 ```
