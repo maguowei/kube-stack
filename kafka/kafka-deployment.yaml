@@ -41,14 +41,15 @@ spec:
           - -exc
           - |
             unset KAFKA_PORT && \
-            export KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:32400 && \
+            export KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${POD_IP}:9200 && \
             exec /etc/confluent/docker/run
           resources: {}
-          volumeMounts:
-            - mountPath: /var/lib/kafka/data
-              name: kafka
+          # volumeMounts:
+          #   - mountPath: /var/lib/kafka/data
+          #     name: kafka
       restartPolicy: Always
-      volumes:
-        - name: kafka
-          hostPath:
-            path: /var/k8s/volumes/default/kafka/data
+
+      # volumes:
+      #   - name: kafka
+      #     persistentVolumeClaim:
+      #       claimName: kafka-pv-claim
