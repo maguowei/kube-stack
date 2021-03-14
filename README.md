@@ -58,9 +58,8 @@
 │   └── storage-configmap.yaml
 ├── kafka
 │   ├── README.md
-│   ├── kafka-deployment.yaml
 │   ├── kafka-headless-service.yaml
-│   ├── kafka-service.yaml
+│   ├── kafka-statefulset.yaml
 │   ├── zookeeper-deployment.yaml
 │   └── zookeeper-service.yaml
 ├── loki
@@ -109,6 +108,10 @@
 │   ├── README.md
 │   ├── deployment.yaml
 │   ├── pulsar-manager-deployment.yaml
+│   └── service.yaml
+├── pyroscope
+│   ├── README.md
+│   ├── deployment.yaml
 │   └── service.yaml
 └── redis
     ├── README.md
