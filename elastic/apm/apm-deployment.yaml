@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: apm
-          image: elastic/apm-server:7.9.0
+          image: elastic/apm-server:7.11.2
           args:
             - -e
             - -E
