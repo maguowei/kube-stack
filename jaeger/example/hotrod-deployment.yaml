@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: jaeger-example-query
-          image: jaegertracing/example-hotrod:1.18.0
+          image: jaegertracing/example-hotrod:1.22.0
           env:
             - name: JAEGER_AGENT_HOST
               valueFrom:
