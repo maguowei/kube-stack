@@ -5,7 +5,7 @@
 todo
 
 - [x] 添加专门的复制账号
-- [ ] 在dump 之前锁住master
+- [x] 在dump 之前锁住master
 
 
 ## Ref
