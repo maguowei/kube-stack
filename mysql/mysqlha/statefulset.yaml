@@ -85,7 +85,6 @@ spec:
               else
                 until mysql -hmysql-0.mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "SELECT 1"; do sleep 5; done
                 rm -f /data/mysql-snapshot/master-database.sql
-                mysql -hmysql-0.mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "FLUSH TABLES WITH READ LOCK"
                 mysqldump --all-databases --master-data -hmysql-0.mysql -uroot -p${MYSQL_ROOT_PASSWORD} > /data/mysql-snapshot/master-database.sql
               fi
           volumeMounts:
@@ -130,7 +129,6 @@ spec:
                 mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} < /data/mysql-snapshot/master-database.sql
                 mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "CHANGE MASTER TO MASTER_HOST = 'mysql-0.mysql', MASTER_PORT = 3306, MASTER_USER = 'repl', MASTER_PASSWORD = 'repl', MASTER_AUTO_POSITION = 1, GET_MASTER_PUBLIC_KEY = 1;"
                 mysql -h127.0.0.1 -uroot -p${MYSQL_ROOT_PASSWORD} -e "start slave;"
-                mysql -hmysql-0.mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "UNLOCK TABLES"
               fi
               while true
               do
