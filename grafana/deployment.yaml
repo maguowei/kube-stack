@@ -14,9 +14,11 @@ spec:
       labels:
         app: grafana
     spec:
+      securityContext:
+        runAsUser: 0
       containers:
         - name: grafana
-          image: grafana/grafana:7.4.3
+          image: grafana/grafana:8.0.3
           envFrom:
             - secretRef:
                 name: grafana
@@ -29,5 +31,5 @@ spec:
       restartPolicy: Always
       volumes:
         - name: grafana
-          hostPath:
-            path: /var/k8s/volumes/default/grafana
+          persistentVolumeClaim:
+            claimName: grafana-pv-claim
