@@ -1,7 +1,7 @@
 # Pulasr
 
 ```bash
-$ kubectl create -f pulsar
+$ kubectl apply -f pulsar
 $ kubectl expose service pulsar --port 6650 --type NodePort --name pulsar-node-port
 
 # pulsar-manager
@@ -15,6 +15,7 @@ $ curl \
     -d '{"name": "admin", "password": "apachepulsar", "description": "test", "email": "username@test.org"}'
 ```
 
+access [pulsar-manager](http://localhost:9527/)
 ## Ref
 
 - [Deploying Pulsar on Kubernetes](https://pulsar.apache.org/docs/en/deploy-kubernetes/)
