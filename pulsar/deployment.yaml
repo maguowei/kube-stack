@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: pulsar
-          image: apachepulsar/pulsar:2.8.0
+          image: apachepulsar/pulsar:2.8.1
           args:
             - bin/pulsar
             - standalone
