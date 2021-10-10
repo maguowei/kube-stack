@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: jaeger-collector
-          image: jaegertracing/jaeger-collector:1.22.0
+          image: jaegertracing/jaeger-collector:1.27.0
           envFrom:
             - configMapRef:
                 name: jaeger-storage

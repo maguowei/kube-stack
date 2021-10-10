@@ -6,8 +6,6 @@ metadata:
     app: jaeger-spark-dependencies
 spec:
   jobTemplate:
-    metadata:
-      creationTimestamp: null
     spec:
       template:
         metadata:
