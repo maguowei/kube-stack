@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: elasticsearch
-          image: elasticsearch:7.16.2
+          image: elasticsearch:8.1.2
           env:
             - name: ES_JAVA_OPTS
               value: -Xmx256m -Xms256m
