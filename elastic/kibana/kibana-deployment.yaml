@@ -20,7 +20,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: kibana
-            - secretRef:
-                name: kibana
+            # - secretRef:
+            #     name: kibana
           resources: {}
       restartPolicy: Always
