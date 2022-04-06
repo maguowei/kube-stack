@@ -12,6 +12,7 @@
 │   ├── deployment.yaml
 │   └── service.yaml
 ├── elastic
+│   ├── README.md
 │   ├── apm
 │   │   ├── apm-deployment.yaml
 │   │   ├── apm-ingress.yaml
@@ -22,11 +23,15 @@
 │   │   └── elasticsearch-service.yaml
 │   ├── filebeat
 │   │   ├── README.md
-│   │   └── filebeat-daemonset.yaml
+│   │   ├── filebeat-daemonset.yaml
+│   │   └── kafka-elasticsearch
+│   │       └── filebeat-kafka-elasticsearch-daemonset.yaml
 │   └── kibana
+│       ├── configmap.yaml
 │       ├── kibana-deployment.yaml
 │       ├── kibana-ingress.yaml
-│       └── kibana-service.yaml
+│       ├── kibana-service.yaml
+│       └── secret.yaml
 ├── etcd
 │   ├── README.md
 │   ├── deployment.yaml
@@ -35,6 +40,8 @@
 │   ├── configmap.yaml
 │   ├── deployment.yaml
 │   ├── ingress.yaml
+│   ├── pv.yaml
+│   ├── pvc.yaml
 │   ├── secret.yaml
 │   └── service.yaml
 ├── influxdb
@@ -56,12 +63,8 @@
 │   ├── spark-dependencies
 │   │   └── jaeger-spark-dependencies-cronjob.yaml
 │   └── storage-configmap.yaml
-├── kafka
-│   ├── README.md
-│   ├── kafka-headless-service.yaml
-│   ├── kafka-statefulset.yaml
-│   ├── zookeeper-deployment.yaml
-│   └── zookeeper-service.yaml
+├── jetbrains
+│   └── README.md
 ├── loki
 │   ├── deployment.yaml
 │   ├── promtail
@@ -119,5 +122,9 @@
     ├── pv.yaml
     ├── pvc.yaml
     ├── redis-exporter.yaml
+    ├── redisinsight
+    │   ├── README.md
+    │   ├── deployment.yaml
+    │   └── service.yaml
     └── service.yaml
 ```
