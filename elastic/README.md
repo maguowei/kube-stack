@@ -13,4 +13,4 @@ kubectl -n default exec -it $(kubectl get pod -n default -l 'app=elasticsearch' 
 ## Refs
 
 - [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/8.1/docker.html)
-- [elasticsearch-create-enrollment-token](https://www.elastic.co/guide/en/elasticsearch/reference/8.0/create-enrollment-token.html)
+- [Install Kibana with Docker](https://www.elastic.co/guide/en/kibana/current/docker.html)
