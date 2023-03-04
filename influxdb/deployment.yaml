@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: influxdb
-          image: influxdb:2.1
+          image: influxdb:2.6
           resources: {}
           volumeMounts:
             - mountPath: /var/lib/influxdb

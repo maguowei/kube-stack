@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nats
-          image: nats:2.6
+          image: nats:2.9
           imagePullPolicy: IfNotPresent
       restartPolicy: Always
   selector:
