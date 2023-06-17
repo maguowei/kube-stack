@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: promtail
-          image: grafana/promtail:1.5.0
+          image: grafana/promtail:2.8.0
           args:
             - "-config.file=/etc/promtail/promtail_config.yaml"
           resources: {}
