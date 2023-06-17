@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: pulsar-manager
-          image: apachepulsar/pulsar-manager:v0.2.0
+          image: apachepulsar/pulsar-manager:v0.4.0
           env:
             - name: SPRING_CONFIGURATION_FILE
               value: /pulsar-manager/pulsar-manager/application.properties
