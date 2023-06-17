@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: jaeger-query
-          image: jaegertracing/jaeger-query:1.36.0
+          image: jaegertracing/jaeger-query:1.46
           envFrom:
             - configMapRef:
                 name: jaeger-storage
