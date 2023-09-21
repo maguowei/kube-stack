@@ -14,10 +14,9 @@ spec:
     spec:
       containers:
         - name: pyroscope
-          image: pyroscope/pyroscope:latest
-          args:
-            - server
+          image: grafana/pyroscope:1.0.0
           imagePullPolicy: IfNotPresent
+          resources: {}
       restartPolicy: Always
   selector:
     matchLabels:

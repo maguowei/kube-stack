@@ -7,4 +7,3 @@ spec:
     app: pyroscope
   ports:
     - port: 4040
-  type: NodePort
