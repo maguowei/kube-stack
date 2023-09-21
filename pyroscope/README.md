@@ -1,4 +1,4 @@
 # pyroscope
 
 
-- [pyroscope-io/pyroscope](https://github.com/pyroscope-io/pyroscope)
+- [grafana/pyroscope](https://github.com/grafana/pyroscope)
