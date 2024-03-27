@@ -5,3 +5,8 @@ metadata:
 data:
   SUPERSET_SECRET_KEY: "JgUaBs9jcR9kzX8Cgf4t"
   TALISMAN_ENABLED: "False"
+  superset_config.py: |
+    LANGUAGES = {
+        "en": {"flag": "us", "name": "English"},
+        "zh": {"flag": "cn", "name": "Chinese"},
+    }

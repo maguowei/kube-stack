@@ -17,8 +17,16 @@ spec:
       containers:
         - name: major
           image: apache/superset:4.0.0rc1
+          imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
                 name: superset
-          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /app/superset_config.py
+              name: superset-config
+              subPath: superset_config.py
       restartPolicy: Always
+      volumes:
+        - name: superset-config
+          configMap:
+            name: superset
