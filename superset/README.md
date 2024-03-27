@@ -11,7 +11,7 @@ kubectl exec -it deployments/superset -- superset fab create-admin \
               --password admin
 
 # init          
-kubectl exec -it deployments/superset -- superset db upgrade && docker exec -it superset superset init
+kubectl exec -it deployments/superset --  sh -c 'superset db upgrade; superset init'
 
 # port-forward
 kubectl port-forward services/my-superset 8088:8088
