@@ -21,6 +21,13 @@ spec:
           envFrom:
             - configMapRef:
                 name: superset
+          resources:
+            limits:
+              cpu: 250m
+              memory: 512Mi
+            requests:
+              cpu: 250m
+              memory: 512Mi
           volumeMounts:
             - mountPath: /app/superset_config.py
               name: superset-config

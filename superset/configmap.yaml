@@ -10,3 +10,7 @@ data:
         "en": {"flag": "us", "name": "English"},
         "zh": {"flag": "cn", "name": "Chinese"},
     }
+    SQLALCHEMY_DATABASE_URI = (
+      f"""sqlite:///{os.path.join(DATA_DIR, "superset.db")}?check_same_thread=false"""
+    )
+    # SQLALCHEMY_DATABASE_URI = 'mysql://root:root@mysql/data'
