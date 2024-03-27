@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: superset
+  labels:
+    app: superset
+spec:
+  selector:
+    matchLabels:
+      app: superset
+  template:
+    metadata:
+      name: superset
+      labels:
+        app: superset
+    spec:
+      containers:
+        - name: major
+          image: apache/superset:4.0.0rc1
+          envFrom:
+            - configMapRef:
+                name: superset
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always

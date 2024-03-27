@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: superset
+data:
+  SUPERSET_SECRET_KEY: "JgUaBs9jcR9kzX8Cgf4t"
+  TALISMAN_ENABLED: "False"
