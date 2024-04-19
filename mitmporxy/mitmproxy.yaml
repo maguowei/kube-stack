@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mitmproxy
+  labels:
+    app: mitmproxy
+spec:
+  selector:
+    matchLabels:
+      app: mitmproxy
+  template:
+    metadata:
+      name: mitmproxy
+      labels:
+        app: mitmproxy
+    spec:
+      containers:
+        - name: mitmproxy
+          image: mitmproxy/mitmproxy
+          imagePullPolicy: IfNotPresent
+          command: ["mitmweb", "--web-host", "0.0.0.0"]
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8081
+              protocol: TCP
+      restartPolicy: Always
+      
