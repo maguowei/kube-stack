@@ -15,8 +15,8 @@ spec:
         app: superset
     spec:
       containers:
-        - name: major
-          image: apache/superset:4.0.0rc1
+        - name: superset
+          image: apache/superset:4.0.2
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
