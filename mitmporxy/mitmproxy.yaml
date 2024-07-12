@@ -18,7 +18,7 @@ spec:
         - name: mitmproxy
           image: mitmproxy/mitmproxy
           imagePullPolicy: IfNotPresent
-          command: ["mitmweb", "--web-host", "0.0.0.0"]
+          command: ["mitmweb", "--listen-host", "0.0.0.0", "--web-host", "0.0.0.0"]
           ports:
             - containerPort: 8080
               protocol: TCP
