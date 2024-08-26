@@ -18,6 +18,9 @@ spec:
         - name: superset
           image: apache/superset:4.0.2
           imagePullPolicy: IfNotPresent
+          env:
+            - name: SUPERSET_HOME
+              value: /data/superset
           envFrom:
             - configMapRef:
                 name: superset
@@ -32,8 +35,13 @@ spec:
             - mountPath: /app/superset_config.py
               name: superset-config
               subPath: superset_config.py
+            - mountPath: /data/superset
+              name: superset
       restartPolicy: Always
       volumes:
         - name: superset-config
           configMap:
             name: superset
+        - name: superset
+          hostPath:
+            path: /var/k8s/volumes/default/superset

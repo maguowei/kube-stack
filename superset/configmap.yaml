@@ -10,7 +10,13 @@ data:
         "en": {"flag": "us", "name": "English"},
         "zh": {"flag": "cn", "name": "Chinese"},
     }
+    BABEL_DEFAULT_LOCALE = "zh"
+    PUBLIC_ROLE_LIKE: str | None = "Gamma"
+    AUTH_ROLE_PUBLIC = 'Public'
+    WTF_CSRF_ENABLED = False
     # SQLALCHEMY_DATABASE_URI = 'mysql://root:root@mysql/data'
     DEFAULT_FEATURE_FLAGS = { 
       "SSH_TUNNELING": True,
+      "EMBEDDED_SUPERSET": True,
+      "EMBEDDABLE_CHARTS": True,
     }
