@@ -16,11 +16,18 @@ spec:
     spec:
       containers:
         - name: jaeger-example-query
-          image: jaegertracing/example-hotrod:1.46
+          image: jaegertracing/example-hotrod:1.61.0
+          args:
+            - all
+            - --otel-exporter=otlp
           env:
-            - name: JAEGER_AGENT_HOST
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-          resources: {}
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://jaeger:4318
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
       restartPolicy: Always

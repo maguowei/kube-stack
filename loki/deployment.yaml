@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
         - name: loki
-          image: grafana/loki:2.8.0
+          image: grafana/loki:3.2.0
           args: 
             - "-config.file=/etc/loki/local-config.yaml"
           resources: {}
           volumeMounts:
-            - mountPath: /tmp/loki/
+            - mountPath: /loki
               name: loki
       restartPolicy: Always
       volumes:
