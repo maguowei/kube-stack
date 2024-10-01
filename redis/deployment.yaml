@@ -30,10 +30,8 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: redis
-      # nodeSelector:
-      #   node_store_type: redis
       restartPolicy: Always
       volumes:
         - name: redis
           persistentVolumeClaim:
-            claimName: redis-pv-claim
+            claimName: redis

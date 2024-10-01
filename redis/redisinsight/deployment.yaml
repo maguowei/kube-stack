@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: redisinsight
-          image: redislabs/redisinsight:latest
+          image: redislabs/redisinsight:2.56
           imagePullPolicy: IfNotPresent
           env:
             - name: REDISINSIGHT_HOST
