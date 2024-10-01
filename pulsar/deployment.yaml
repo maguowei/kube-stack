@@ -16,16 +16,23 @@ spec:
     spec:
       containers:
         - name: pulsar
-          image: apachepulsar/pulsar:3.0.0
+          image: apachepulsar/pulsar:3.3.1
           args:
             - bin/pulsar
             - standalone
-          resources: {}
+          resources:
+            requests:
+              cpu: 1
+              memory: 2Gi
+            limits:
+              cpu: 2
+              memory: 4Gi
           volumeMounts:
             - mountPath: /pulsar/data
               name: pulsar
       restartPolicy: Always
       volumes:
         - name: pulsar
-          hostPath:
-            path: /var/k8s/volumes/default/pulsar
+          persistentVolumeClaim:
+            claimName: pulsar
+

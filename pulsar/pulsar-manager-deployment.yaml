@@ -20,7 +20,13 @@ spec:
           env:
             - name: SPRING_CONFIGURATION_FILE
               value: /pulsar-manager/pulsar-manager/application.properties
-          resources: {}
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              cpu: 1
+              memory: 2Gi
       restartPolicy: Always
 ---
 apiVersion: v1
