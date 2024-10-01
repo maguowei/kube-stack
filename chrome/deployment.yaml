@@ -16,6 +16,13 @@ spec:
         - name: chrome
           image: browserless/chrome
           imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 1
+              memory: 2Gi
+            limits:
+              cpu: 2
+              memory: 4Gi
       restartPolicy: Always
   selector:
     matchLabels:
