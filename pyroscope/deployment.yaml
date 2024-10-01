@@ -14,9 +14,15 @@ spec:
     spec:
       containers:
         - name: pyroscope
-          image: grafana/pyroscope:1.0.0
+          image: grafana/pyroscope:1.8.0
           imagePullPolicy: IfNotPresent
-          resources: {}
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 200m
+              memory: 512Mi
       restartPolicy: Always
   selector:
     matchLabels:
