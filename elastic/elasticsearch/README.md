@@ -1,7 +1,7 @@
 # Elasticsearch
 
 ```bash
-
+kubectl create ingress elasticsearch --class=nginx --rule "elasticsearch.k8s.orb.local/*=elasticsearch:9200"
 ```
 
 ## 参考

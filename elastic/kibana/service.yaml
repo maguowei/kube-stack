@@ -5,6 +5,7 @@ metadata:
   labels:
     app: kibana
 spec:
+  type: ClusterIP
   selector:
     app: kibana
   ports:
