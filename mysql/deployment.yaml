@@ -23,20 +23,18 @@ spec:
           envFrom:
             - secretRef:
                 name: mysql
-#          resources:
-#            requests:
-#              cpu: "1"
-#              memory: "2Gi"
-#            limits:
-#              cpu: "2"
-#              memory: "4Gi"
+          resources:
+            requests:
+              cpu: 1
+              memory: 2Gi
+            limits:
+              cpu: 2
+              memory: 4Gi
           volumeMounts:
             - mountPath: /etc/mysql/conf.d
               name: mysql-config
             - mountPath: /var/lib/mysql
               name: mysql
-      # nodeSelector:
-      #   node_store_type: mysql
       restartPolicy: Always
       volumes:
         - name: mysql-config
@@ -46,5 +44,5 @@ spec:
               - key: mysql-custom.cnf
                 path: mysql-custom.cnf
         - name: mysql
-          hostPath:
-            path: /var/k8s/volumes/default/mysql
+          persistentVolumeClaim:
+            claimName: mysql

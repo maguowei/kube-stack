@@ -16,11 +16,20 @@ spec:
     spec:
       containers:
         - name: mysqld-exporter
-          image: prom/mysqld-exporter
+          image: prom/mysqld-exporter:v0.15.1
+          args:
+            - '--mysqld.address=mysql:3306'
+            - '--mysqld.username=root'
           env:
-            - name: DATA_SOURCE_NAME
-              value: root:root@(mysql:3306)/
-          resources: {}
+            - name: MYSQLD_EXPORTER_PASSWORD
+              value: root
+          resources:
+            requests:
+              cpu: 128m
+              memory: 256Mi
+            limits:
+              cpu: 256m
+              memory: 512Mi
       restartPolicy: Always
 ---
 apiVersion: v1
