@@ -18,13 +18,19 @@ spec:
         runAsUser: 0
       containers:
         - name: grafana
-          image: grafana/grafana:10.0.0
+          image: grafana/grafana:11.2.1
           envFrom:
             - secretRef:
                 name: grafana
             - configMapRef:
                 name: grafana
-          resources: {}
+          resources:
+            requests:
+              cpu: 250m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
           volumeMounts:
             - mountPath: /var/lib/grafana
               name: grafana
@@ -32,4 +38,4 @@ spec:
       volumes:
         - name: grafana
           persistentVolumeClaim:
-            claimName: grafana-pv-claim
+            claimName: grafana
