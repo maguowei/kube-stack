@@ -1,41 +1,3 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: filebeat-config
-  namespace: kube-system
-  labels:
-    k8s-app: filebeat
-data:
-  filebeat.yml: |-
-    # filebeat.inputs:
-    # - type: container
-    #   paths:
-    #     - /var/log/containers/*.log
-    #   processors:
-    #     - add_kubernetes_metadata:
-    #         host: ${NODE_NAME}
-    #         matchers:
-    #         - logs_path:
-    #             logs_path: "/var/log/containers/"
-
-    # To enable hints based autodiscover, remove `filebeat.inputs` configuration and uncomment this:
-    filebeat.autodiscover:
-     providers:
-       - type: kubernetes
-         node: ${NODE_NAME}
-         hints.enabled: true
-         hints.default_config:
-           type: container
-           paths:
-             - /var/log/containers/*${data.kubernetes.container.id}.log
-
-    processors:
-      - add_host_metadata:
-
-    output.elasticsearch:
-      hosts: ['${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
----
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -58,7 +20,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: filebeat
-        image: elastic/filebeat:8.6.0
+        image: elastic/filebeat:8.15.2
         args: [
           "-c", "/etc/filebeat.yml",
           "-e",
@@ -74,14 +36,13 @@ spec:
               fieldPath: spec.nodeName
         securityContext:
           runAsUser: 0
-          # If using Red Hat OpenShift uncomment this:
-          #privileged: true
         resources:
-          limits:
-            memory: 200Mi
           requests:
             cpu: 100m
             memory: 100Mi
+          limits:
+            cpu: 200m
+            memory: 200Mi
         volumeMounts:
         - name: config
           mountPath: /etc/filebeat.yml
@@ -108,8 +69,71 @@ spec:
           path: /var/log
       # data folder stores a registry of read status for all files, so we don't send everything again on a Filebeat pod restart
       - name: data
-        hostPath:
-          path: /var/k8s/volumes/default/filebeat
+        persistentVolumeClaim:
+          claimName: filebeat
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: filebeat
+  namespace: kube-system
+  labels:
+    k8s-app: filebeat
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: filebeat
+  labels:
+    k8s-app: filebeat
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources:
+  - namespaces
+  - pods
+  - nodes
+  verbs:
+  - get
+  - watch
+  - list
+- apiGroups: ["apps"]
+  resources:
+    - replicasets
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["batch"]
+  resources:
+    - jobs
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: filebeat
+  # should be the namespace where filebeat is running
+  namespace: kube-system
+  labels:
+    k8s-app: filebeat
+rules:
+  - apiGroups:
+      - coordination.k8s.io
+    resources:
+      - leases
+    verbs: ["get", "create", "update"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: filebeat-kubeadm-config
+  namespace: kube-system
+  labels:
+    k8s-app: filebeat
+rules:
+  - apiGroups: [""]
+    resources:
+      - configmaps
+    resourceNames:
+      - kubeadm-config
+    verbs: ["get"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -125,25 +149,29 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: filebeat
-  labels:
-    k8s-app: filebeat
-rules:
-- apiGroups: [""] # "" indicates the core API group
-  resources:
-  - namespaces
-  - pods
-  verbs:
-  - get
-  - watch
-  - list
----
-apiVersion: v1
-kind: ServiceAccount
+kind: RoleBinding
 metadata:
   name: filebeat
   namespace: kube-system
-  labels:
-    k8s-app: filebeat
+subjects:
+  - kind: ServiceAccount
+    name: filebeat
+    namespace: kube-system
+roleRef:
+  kind: Role
+  name: filebeat
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: filebeat-kubeadm-config
+  namespace: kube-system
+subjects:
+  - kind: ServiceAccount
+    name: filebeat
+    namespace: kube-system
+roleRef:
+  kind: Role
+  name: filebeat-kubeadm-config
+  apiGroup: rbac.authorization.k8s.io
