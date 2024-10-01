@@ -10,28 +10,25 @@
 │   └── service.yaml
 ├── clickhouse
 │   ├── deployment.yaml
+│   ├── pvc.yaml
 │   └── service.yaml
 ├── elastic
 │   ├── README.md
-│   ├── apm
-│   │   ├── apm-deployment.yaml
-│   │   ├── apm-ingress.yaml
-│   │   └── apm-service.yaml
 │   ├── elasticsearch
-│   │   ├── elasticsearch-deployment.yaml
-│   │   ├── elasticsearch-ingress.yaml
-│   │   └── elasticsearch-service.yaml
+│   │   ├── README.md
+│   │   ├── deployment.yaml
+│   │   ├── pvc.yaml
+│   │   └── service.yaml
 │   ├── filebeat
 │   │   ├── README.md
-│   │   ├── filebeat-daemonset.yaml
-│   │   └── kafka-elasticsearch
-│   │       └── filebeat-kafka-elasticsearch-daemonset.yaml
+│   │   ├── cinfigmap.yaml
+│   │   ├── daemonset.yaml
+│   │   └── pvc.yaml
 │   └── kibana
 │       ├── configmap.yaml
-│       ├── kibana-deployment.yaml
-│       ├── kibana-ingress.yaml
-│       ├── kibana-service.yaml
-│       └── secret.yaml
+│       ├── deployment.yaml
+│       ├── secret.yaml
+│       └── service.yaml
 ├── etcd
 │   ├── README.md
 │   ├── deployment.yaml
@@ -39,14 +36,8 @@
 ├── grafana
 │   ├── configmap.yaml
 │   ├── deployment.yaml
-│   ├── ingress.yaml
-│   ├── pv.yaml
 │   ├── pvc.yaml
 │   ├── secret.yaml
-│   └── service.yaml
-├── influxdb
-│   ├── deployment.yaml
-│   ├── ingress.yaml
 │   └── service.yaml
 ├── jaeger
 │   ├── README.md
@@ -58,13 +49,10 @@
 │   │   ├── hotrod-service.yaml
 │   │   └── ingress.yaml
 │   ├── query-deployment.yaml
-│   ├── query-ingress.yaml
 │   ├── query-service.yaml
 │   ├── spark-dependencies
 │   │   └── jaeger-spark-dependencies-cronjob.yaml
 │   └── storage-configmap.yaml
-├── jetbrains
-│   └── README.md
 ├── loki
 │   ├── deployment.yaml
 │   ├── promtail
@@ -73,22 +61,19 @@
 │   └── service.yaml
 ├── minio
 │   ├── deployment.yaml
-│   ├── ingress.yaml
+│   ├── pvc.yaml
 │   ├── secret.yaml
 │   └── service.yaml
-├── mongo
-│   ├── deployment.yaml
-│   ├── mongo-express.yaml
-│   ├── secret.yaml
+├── mitmporxy
+│   ├── README.md
+│   ├── mitmproxy.yaml
 │   └── service.yaml
 ├── mysql
 │   ├── README.md
 │   ├── configmap.yaml
 │   ├── deployment.yaml
 │   ├── mysqld-exporter.yaml
-│   ├── mysqlha
-│   │   ├── README.md
-│   │   └── statefulset.yaml
+│   ├── pvc.yaml
 │   ├── secret.yaml
 │   └── service.yaml
 ├── nats
@@ -96,35 +81,42 @@
 │   └── service.yaml
 ├── postgres
 │   ├── deployment.yaml
+│   ├── pvc.yaml
 │   ├── secret.yaml
 │   └── service.yaml
 ├── prometheus
 │   ├── README.md
 │   ├── configmap.yaml
 │   ├── deployment.yaml
-│   ├── ingress.yaml
 │   ├── node-exporter
 │   │   └── node-exporter-daemonset.yaml
+│   ├── pvc.yaml
 │   ├── rbac.yml
 │   └── service.yaml
 ├── pulsar
 │   ├── README.md
 │   ├── deployment.yaml
 │   ├── pulsar-manager-deployment.yaml
+│   ├── pvc.yaml
 │   └── service.yaml
 ├── pyroscope
 │   ├── README.md
 │   ├── deployment.yaml
 │   └── service.yaml
-└── redis
+├── redis
+│   ├── README.md
+│   ├── deployment.yaml
+│   ├── pvc.yaml
+│   ├── redis-exporter.yaml
+│   ├── redisinsight
+│   │   ├── README.md
+│   │   ├── deployment.yaml
+│   │   └── service.yaml
+│   └── service.yaml
+└── superset
     ├── README.md
+    ├── configmap.yaml
     ├── deployment.yaml
-    ├── pv.yaml
     ├── pvc.yaml
-    ├── redis-exporter.yaml
-    ├── redisinsight
-    │   ├── README.md
-    │   ├── deployment.yaml
-    │   └── service.yaml
     └── service.yaml
 ```
