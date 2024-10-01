@@ -19,16 +19,24 @@ spec:
           image: minio/minio
           args:
             - server
-            - /export
+            - /data
+            - --console-address
+            - ":9001"
           envFrom:
             - secretRef:
                 name: minio
-          resources: {}
+          resources:
+            requests:
+              cpu: 512m
+              memory: 1Gi
+            limits:
+              cpu: 1
+              memory: 2Gi
           volumeMounts:
-            - mountPath: /export
+            - mountPath: /data
               name: minio
       restartPolicy: Always
       volumes:
         - name: minio
-          hostPath:
-            path: /var/k8s/volumes/default/minio
+          persistentVolumeClaim:
+            claimName: minio
