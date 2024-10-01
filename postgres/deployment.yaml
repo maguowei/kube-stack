@@ -16,19 +16,25 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:15
+          image: postgres:17
           env:
             - name: POSTGRES_DB
               value: data
           envFrom:
             - secretRef:
                 name: postgres
-          resources: {}
+          resources:
+            requests:
+              cpu: 1
+              memory: 2Gi
+            limits:
+              cpu: 2
+              memory: 4Gi
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
-              name: postgresql
+              name: postgres
       restartPolicy: Always
       volumes:
-        - name: postgresql
-          hostPath:
-            path: /var/k8s/volumes/default/postgres
+        - name: postgres
+          persistentVolumeClaim:
+            claimName: postgres
