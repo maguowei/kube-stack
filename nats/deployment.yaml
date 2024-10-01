@@ -6,6 +6,9 @@ metadata:
     app: nats
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: nats
   template:
     metadata:
       name: nats
@@ -14,9 +17,13 @@ spec:
     spec:
       containers:
         - name: nats
-          image: nats:2.9
+          image: nats:2.10
           imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 1
+              memory: 2Gi
+            limits:
+              cpu: 2
+              memory: 4Gi
       restartPolicy: Always
-  selector:
-    matchLabels:
-      app: nats

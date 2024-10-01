@@ -8,5 +8,7 @@ spec:
   ports:
     - name: client
       port: 4222
+    - name: cluster
+      port: 6222
     - name: management
       port: 8222
