@@ -43,5 +43,5 @@ spec:
           configMap:
             name: superset
         - name: superset
-          hostPath:
-            path: /var/k8s/volumes/default/superset
+          persistentVolumeClaim:
+            claimName: superset
