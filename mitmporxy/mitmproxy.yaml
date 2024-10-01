@@ -19,10 +19,12 @@ spec:
           image: mitmproxy/mitmproxy
           imagePullPolicy: IfNotPresent
           command: ["mitmweb", "--listen-host", "0.0.0.0", "--web-host", "0.0.0.0"]
-          ports:
-            - containerPort: 8080
-              protocol: TCP
-            - containerPort: 8081
-              protocol: TCP
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
       restartPolicy: Always
       
