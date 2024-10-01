@@ -17,8 +17,14 @@ spec:
       serviceAccountName: prometheus 
       containers:
         - name: prometheus
-          image: prom/prometheus
-          resources: {}
+          image: prom/prometheus:v3.0.0-beta.0
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
           volumeMounts:
             - mountPath: /etc/prometheus
               name: prometheus-conf
@@ -33,5 +39,5 @@ spec:
               - key: prometheus.yml
                 path: prometheus.yml
         - name: prometheus
-          hostPath:
-            path: /var/k8s/volumes/default/prometheus
+          persistentVolumeClaim:
+            claimName: prometheus
