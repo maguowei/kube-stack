@@ -30,12 +30,12 @@ spec:
               name: transport
               protocol: TCP
           resources:
-            limits:
-              cpu: 500m
-              memory: 4Gi
             requests:
               cpu: 250m
               memory: 2Gi
+            limits:
+              cpu: 500m
+              memory: 4Gi
           volumeMounts:
             - name: data
               mountPath: /usr/share/elasticsearch/data

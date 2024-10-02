@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: directus
+  labels:
+    app: directus
+spec:
+  selector:
+    app: directus
+  ports:
+    - port: 8055
+      targetPort: 8055
+  

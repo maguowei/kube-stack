@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: directus
+spec:
+  selector:
+    matchLabels:
+      app: directus
+  template:
+    metadata:
+      labels:
+        app: directus
+    spec:
+      containers:
+        - name: directus
+          image: directus/directus:10
+          ports:
+            - containerPort: 8055
+          env:
+            - name: KEY
+              value: "Dnxr04NGtdqX3Bg83Jdp"
+            - name: SECRET
+              value: "rgT7gTQ7nJWzWLKsTMxDY"
+            - name: ADMIN_EMAIL
+              value: "admin@example.com"
+            - name: ADMIN_PASSWORD
+              value: "admin"
+            - name: DB_CLIENT
+              value: "sqlite3"
+            - name: DB_FILENAME
+              value: "/directus/database/data.db"
+            - name: WEBSOCKETS_ENABLED
+              value: "true"
+          volumeMounts:
+            - name: database
+              mountPath: /directus/database
+            - name: uploads
+              mountPath: /directus/uploads
+            - name: extensions
+              mountPath: /directus/extensions
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              cpu: 1000m
+              memory: 2Gi
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: directus-database
+        - name: uploads
+          persistentVolumeClaim:
+            claimName: directus-uploads
+        - name: extensions
+          persistentVolumeClaim:
+            claimName: directus-extensions
