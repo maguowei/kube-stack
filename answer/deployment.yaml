@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: answer
+  labels:
+    app: answer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: answer
+  template:
+    metadata:
+      labels:
+        app: answer
+    spec:
+      containers:
+        - name: answer
+          image: apache/answer:1.4.0
+          env:
+            - name: AUTO_INSTALL
+              value: "true"
+            - name: DB_TYPE
+              value: sqlite3
+            - name: DB_FILE
+              value: "db.sql"
+            - name: LANGUAGE
+              value: zh-CN
+            - name: SITE_NAME
+              value: answer
+            - name: SITE_URL
+              value: "http://answer.default.svc.cluster.local"
+            - name: CONTACT_EMAIL
+              value: "xxx@xxx.com"
+            - name: ADMIN_NAME
+              value: admin
+            - name: ADMIN_PASSWORD
+              value: adminadmin
+            - name: ADMIN_EMAIL
+              value: "admin@xxx.com"
+          resources:
+            requests:
+              cpu: 250m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          volumeMounts:
+            - mountPath: /data
+              name: answer
+      restartPolicy: Always        
+      volumes:
+        - name: answer
+          persistentVolumeClaim:
+            claimName: answer
